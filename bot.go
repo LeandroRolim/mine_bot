@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 	"os/signal"
 	"strconv"
@@ -16,10 +15,11 @@ import (
 )
 
 func init() {
-	err := godotenv.Load("../.env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	_ = godotenv.Load(".outro")
+
+	//if err != nil {
+	//	log.Fatal("Error loading .env file")
+	//}
 	token = os.Getenv("DISCORD_TOKEN")
 	channelId = os.Getenv("DISCORD_CHANNEL_ID")
 	dropletId, _ = strconv.Atoi(os.Getenv("DROPLET_ID"))
@@ -34,7 +34,7 @@ var digitalOceanToken string
 func main() {
 
 	if token == "" {
-		fmt.Println("No token provided. Please run: airhorn -t <bot token>")
+		fmt.Println("No token provided.")
 		return
 	}
 
